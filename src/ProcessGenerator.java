@@ -17,6 +17,6 @@ public class ProcessGenerator {
         int priority = rnd.nextInt(maxLevel)+1;
         int remainingTime = rnd.nextInt(maxProcessTime)+1;
         Process newProcess = new Process(remainingTime,currentTime,priority);
-        return null;
+        return newProcess;
     }
 }
