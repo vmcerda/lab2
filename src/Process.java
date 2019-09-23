@@ -34,16 +34,16 @@ public class Process {
     public boolean finish(){
         return remainingTime == 0;
     }
-    public Process compareTo(Process one, Process two){
+    public boolean compareTo(Process one, Process two){
         if (one.getPriority() > two.getPriority()){
-            return one;
+            return true;
         }else if(two.getPriority() > one.getPriority()){
-            return two;
+            return false;
         }else{
             if(one.getArrivalTime() < two.getArrivalTime()){
-                return one;
+                return true;
             }else{
-                return two;
+                return false;
             }
         }
     }

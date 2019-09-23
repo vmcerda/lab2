@@ -1,22 +1,24 @@
+import java.util.ArrayList;
+
 public class PQueue {
 
     private int timeToIncrementLevel;
     private int maxLevel;
-    private boolean queFull;
+    private MaxHeap maxHeap;
 
     public PQueue(){
+        maxHeap = new MaxHeap();
     }
 
     public void enPQueue(Process p) {
-        queFull = true;
+        maxHeap.insert(p);
     }
 
     public boolean isEmpty() {
-        return queFull;//set to true if process passed in
+        return maxHeap.isEmpty();
     }
 
     public Process dePQueue() {
-        queFull = false;
         return null;//I set this value
     }
 
