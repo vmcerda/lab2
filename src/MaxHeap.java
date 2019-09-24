@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MaxHeap {
 
@@ -18,17 +17,19 @@ public class MaxHeap {
         int l = leftChild(index);
         int r = rightChild(index);
         int largest = parent(index);
-        if ( l <= heap.size() && heap.get(l).compareTo(heap.get(l),heap.get(index))){ // uses compare method to find which node has priority
-            largest = l;
-        }
-        if (r <= heap.size() && heap.get(r).compareTo(heap.get(r),heap.get(index))){ // uses compare method to find which node has priority
-            largest = r;
-        }
-        if (largest != index){
-            Process hold = myHeap.get(index);
-            myHeap.add(index,myHeap.get(largest));
-            myHeap.add(largest,hold);
-            maxHeapDWN(heap,largest);
+        if(heap.size() > 3) {
+            if (l <= heap.size() && heap.get(l).compareTo(heap.get(l), heap.get(index))) { // uses compare method to find which node has priority
+                largest = l;
+            }
+            if (r <= heap.size() && heap.get(r).compareTo(heap.get(r), heap.get(index))) { // uses compare method to find which node has priority
+                largest = r;
+            }
+            if (largest != index) {
+                Process hold = myHeap.get(index);
+                myHeap.add(index, myHeap.get(largest));
+                myHeap.add(largest, hold);
+                maxHeapDWN(heap, largest);
+            }
         }
     }
 
@@ -54,5 +55,9 @@ public class MaxHeap {
     private int parent(int index){
         return (index/2);
 
+    }
+
+    public Process extractMax() {  //Not sure this is right
+        return myHeap.remove(0);
     }
 }
