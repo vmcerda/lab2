@@ -20,7 +20,7 @@ public class PQueue {
     }
 
     public Process dePQueue() {
-        return maxHeap.extractMax();//I set this value
+        return maxHeap.extractMax();
     }
 
     public void update(int timeToIncrementLevel, int maxLevel) {

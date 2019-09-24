@@ -57,7 +57,22 @@ public class MaxHeap {
 
     }
 
-    public Process extractMax() {  //Not sure this is right
-        return myHeap.remove(0);
+    public Process extractMax() {
+        int highPHold = myHeap.get(0).getPriority();
+        int highAHold = myHeap.get(0).getArrivalTime();
+        int index = 0;
+        for(int i = 1;i < myHeap.size();i++){
+            if(myHeap.get(i).getPriority() > highPHold){
+                index = i;
+                highPHold = myHeap.get(i).getPriority();
+            }else if(highPHold == myHeap.get(i).getPriority()){
+                if(highAHold > myHeap.get(i).getArrivalTime()){
+                    index = i;
+                    highPHold = myHeap.get(i).getPriority();
+                    highAHold = myHeap.get(i).getArrivalTime();
+                }
+            }
+        }
+        return myHeap.remove(index);
     }
 }
