@@ -12,6 +12,7 @@ public class PQueue {
 
     public void enPQueue(Process p) {
         maxHeap.insert(p);
+
     }
 
     public boolean isEmpty() {
