@@ -61,7 +61,7 @@ public class MaxHeap {
             System.exit(0);
         }
         Process max = myHeap.get(0);
-        myHeap.add(0,myHeap.get(myHeap.size()-1));
+        myHeap.set(0,myHeap.get(myHeap.size()-1));
         myHeap.remove(myHeap.size()-1);
         maxHeapDWN(0);
         return max;
