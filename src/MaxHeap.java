@@ -56,25 +56,23 @@ public class MaxHeap {
     }
 
     public Process extractMax() {
-        int highPHold = myHeap.get(0).getPriority();
-        int highAHold = myHeap.get(0).getArrivalTime();
-        int index = 0;
-        for(int i = 1;i < myHeap.size();i++){
-            if(myHeap.get(i).getPriority() > highPHold){
-                index = i;
-                highPHold = myHeap.get(i).getPriority();
-            }else if(highPHold == myHeap.get(i).getPriority()){
-                if(highAHold > myHeap.get(i).getArrivalTime()){
-                    index = i;
-                    highPHold = myHeap.get(i).getPriority();
-                    highAHold = myHeap.get(i).getArrivalTime();
-                }
-            }
+        if(myHeap.size() < 1){
+            System.out.println("Heap underflow");
+            System.exit(0);
         }
-        return myHeap.remove(index);
+        Process max = myHeap.get(0);
+        myHeap.add(0,myHeap.get(myHeap.size()-1));
+        myHeap.remove(myHeap.size()-1);
+        maxHeapDWN(0);
+        return max;
     }
 
     public void update(int timeToIncrementLevel, int maxLevel) {
 
+        for(int i = 0; i < myHeap.size();i++){
+            if(myHeap.get(i).getPriority() < maxLevel){
+                myHeap.get(i).setPriority(myHeap.get(i).getPriority() + 1);
+            }
+        }
     }
 }
