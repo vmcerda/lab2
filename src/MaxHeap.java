@@ -10,33 +10,31 @@ public class MaxHeap {
 
     public void insert(Process p) {
         myHeap.add(p);
-        maxHeapUp(myHeap);
+        maxHeapUp();
     }
 
-    private void maxHeapDWN(ArrayList<Process> heap,int index) {
+    private void maxHeapDWN(int index) {
         int l = leftChild(index);
         int r = rightChild(index);
-        int largest = parent(index);
-        if(heap.size() > 3) {
-            if (l <= heap.size() && heap.get(l).compareTo(heap.get(l), heap.get(index))) { // uses compare method to find which node has priority
-                largest = l;
-            }
-            if (r <= heap.size() && heap.get(r).compareTo(heap.get(r), heap.get(index))) { // uses compare method to find which node has priority
-                largest = r;
-            }
-            if (largest != index) {
-                Process hold = myHeap.get(index);
-                myHeap.add(index, myHeap.get(largest));
-                myHeap.add(largest, hold);
-                maxHeapDWN(heap, largest);
-            }
+        int largest = index;
+
+        if(l < myHeap.size() && myHeap.get(l).compareTo(myHeap.get(index)) > 0){
+            largest = l;
+        }
+        if (r < myHeap.size() && myHeap.get(r).compareTo(myHeap.get(index)) < 0) {
+            largest = r;
+        }
+        if (largest != index) {
+            Process hold = myHeap.get(index);
+            myHeap.add(index, myHeap.get(largest));
+            myHeap.add(largest, hold);
+            maxHeapDWN(largest);
         }
     }
 
-    private void maxHeapUp(ArrayList<Process> heap){
-        int size = heap.size();
-        for (int i = 0; i == size/2; i++){
-            maxHeapDWN(heap, i);
+    private void maxHeapUp(){
+        for (int i = myHeap.size()/2; i >= 0; i--){
+            maxHeapDWN(i);
         }
     }
 
@@ -45,15 +43,15 @@ public class MaxHeap {
     }
 
     private int leftChild(int index){
-        return 2*(index);
+        return ((2*index) + 1);
     }
 
     private int rightChild(int index){
-        return (2 * index) + 1;
+        return ((2*index) + 2);
     }
 
     private int parent(int index){
-        return (index/2);
+        return ((index +1)/2);
 
     }
 
@@ -74,5 +72,9 @@ public class MaxHeap {
             }
         }
         return myHeap.remove(index);
+    }
+
+    public void update(int timeToIncrementLevel, int maxLevel) {
+
     }
 }

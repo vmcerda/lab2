@@ -2,8 +2,6 @@ import java.util.ArrayList;
 
 public class PQueue {
 
-    private int timeToIncrementLevel;
-    private int maxLevel;
     private MaxHeap maxHeap;
 
     public PQueue(){
@@ -24,7 +22,6 @@ public class PQueue {
     }
 
     public void update(int timeToIncrementLevel, int maxLevel) {
-        this.timeToIncrementLevel = timeToIncrementLevel;
-        this.maxLevel = maxLevel;
+        maxHeap.update(timeToIncrementLevel,maxLevel);
     }
 }

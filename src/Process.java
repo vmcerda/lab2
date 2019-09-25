@@ -1,9 +1,10 @@
-public class Process {
+public class Process implements Comparable<Process>{
 
     private int remainingTime;
     private int arrivalTime;
     private int priority;
-    private Object timeNotProcessed;
+    private int timeNotProcessed;
+    private int newLevel;
 
     public Process(int remainingTime,int arrivalTime,int priority){
         this.remainingTime = remainingTime;
@@ -22,6 +23,12 @@ public class Process {
     public int getPriority(){
         return priority;
     }
+    public void setPriority(int priority){
+        this.priority = priority;
+    }
+    public void setTimeNotProcessed(int timeNotProcessed){
+        this.timeNotProcessed = timeNotProcessed;
+    }
 
     public void reduceTimeRemaining() {
         remainingTime--;
@@ -34,16 +41,18 @@ public class Process {
     public boolean finish(){
         return remainingTime == 0;
     }
-    public boolean compareTo(Process one, Process two){
-        if (one.getPriority() > two.getPriority()){
-            return true;
-        }else if(two.getPriority() > one.getPriority()){
-            return false;
+
+    @Override
+    public int compareTo(Process process) {
+        if(this.getPriority() > process.getPriority()){
+            return 1;
+        }else if(process.getPriority() > this.getPriority()){
+            return -1;
         }else{
-            if(one.getArrivalTime() < two.getArrivalTime()){
-                return true;
+            if(this.getArrivalTime() < process.getArrivalTime()){
+                return 1;
             }else{
-                return false;
+                return -1;
             }
         }
     }
