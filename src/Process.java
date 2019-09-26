@@ -4,7 +4,6 @@ public class Process implements Comparable<Process>{
     private int arrivalTime;
     private int priority;
     private int timeNotProcessed;
-    private int newLevel;
 
     public Process(int remainingTime,int arrivalTime,int priority){
         this.remainingTime = remainingTime;
@@ -26,10 +25,13 @@ public class Process implements Comparable<Process>{
     public void setPriority(int priority){
         this.priority = priority;
     }
-    public void setTimeNotProcessed(int timeNotProcessed){
-        this.timeNotProcessed = timeNotProcessed;
-    }
 
+    public void increaseTimeNotProcessed(){
+        this.timeNotProcessed++;
+    }
+    public int getTimeNotProcessed(){
+        return this.timeNotProcessed;
+    }
     public void reduceTimeRemaining() {
         remainingTime--;
     }
